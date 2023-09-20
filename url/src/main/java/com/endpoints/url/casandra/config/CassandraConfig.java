@@ -35,10 +35,6 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     }
 
 
-//    @Bean(name = "cqlSession")
-//    public CqlSession cqlSession() {
-//        return CqlSession.builder().build();
-//    }
 }
 
 
