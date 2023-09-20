@@ -1,0 +1,48 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="000-1" author="jagadeesh">
+        <!-- Use lowercase for table and column names for consistency -->
+        <validCheckSum>8:b9b1141e20b3ba59b0ba895434c532a3</validCheckSum>
+        <createTable tableName="customer_entity">
+            <column name="customer_id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="customerName" type="varchar(255)"/>
+            <column name="address" type="varchar(255)"/>
+            <column name="city" type="varchar(255)"/>
+            <column name="country" type="varchar(255)"/>
+            <column name="phone" type="varchar(255)"/>
+            <column name="email_id" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="000-2" author="jagadeesh">
+        <!-- Update the validCheckSum value if you make changes -->
+        <validCheckSum>8:b9b1141e20b3ba59b0ba895434c532a3</validCheckSum>
+        <createTable tableName="order_entity">
+            <column name="order_id" type="int" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="order_cost" type="int"/>
+            <column name="order_create_ts" type="timestamp"/>
+            <column name="order_update_ts" type="timestamp"/>
+            <column name="order_status" type="varchar(255)"/>
+            <column name="customer_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="000-3" author="jagadeesh">
+        <!-- Update the validCheckSum value if you make changes -->
+        <validCheckSum>8:b9b1141e20b3ba59b0ba895434c532a3</validCheckSum>
+        <addForeignKeyConstraint baseTableName="order_entity"
+                                 baseColumnNames="customer_id"
+                                 constraintName="fk_customer_order"
+                                 referencedTableName="customer_entity"
+                                 referencedColumnNames="customer_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>
